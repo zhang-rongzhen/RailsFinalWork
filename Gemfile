@@ -25,7 +25,8 @@ gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'simple_form', '~> 4.0'
 
 gem 'carrierwave', '~> 1.2', '>= 1.2.3'
-gem 'mini_magick'
+gem 'cancancan', '~> 2.2'
+
 
 
 # Use CoffeeScript for .coffee assets and views

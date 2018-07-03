@@ -11,9 +11,9 @@
         <div class="row my-2">
           <div class="col-sm-4" style="text-align:center">
            <% if comment.imgURL1_url.nil? %>
-             <%= image_tag("noimg.jpeg", {:style => "width:150px;object-fit:cover;border-radius:5px;"}) %>
+             <%= image_tag("noimg.jpeg", {:style => "width:200px;object-fit:cover;border-radius:5px;"}) %>
            <% else %>
-             <%= image_tag(comment.imgURL1_url.to_s, {:style => "width:150px;object-fit:cover;border-radius:5px;"}) %>
+             <%= image_tag(comment.imgURL1_url.to_s, {:style => "width:200px;object-fit:cover;border-radius:5px;"}) %>
            <% end %>
           </div>
           <div class="col-sm-8" style="height:150px;text-overflow:ellipsis;overflow:hidden;">
@@ -22,9 +22,9 @@
         </div>
         <h5>written by <%= comment.user.display_name %></h5>
         <div style="text-align:right">
-          <%= link_to '編輯食記', edit_comment_path(comment) ,  { :class=>"btn btn-outline-dark" } %>
+          <%= link_to '編輯食記', edit_comment_path(comment) ,  { :class=>"btn btn-outline-dark" } if can? :update, comment %>
           <%= link_to '查看完整食記', comment ,  { :class=>"btn btn-outline-dark" } %>
-          <%= link_to '刪除食記', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to '刪除食記', comment, method: :delete , data: { confirm: 'Are you sure?' } if can? :destroy, comment %>
         </div>
       </div>
      </div>
