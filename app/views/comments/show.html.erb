@@ -1,0 +1,33 @@
+<div class="container p-3" >
+  
+  <% if user_signed_in? %>
+   <%= link_to '撰寫食記', new_comment_path,{:class => "btn btn-outline-dark" ,:style => "float:left"} %>
+  <% end %> 
+ <%= render '/share/top_button' %>
+ 
+ <div class="my-2 p-3" style="background:rgba(255,255,255,0.7);border-radius:10px;">
+   <h3 style="display:inline"><strong><%= @comment.rsname %></strong></h3> 
+   <span style="color:blue;font-size:15px;"><%= @comment.city %></span>  
+   <h5 style="display:inline">written by <%= @comment.user.display_name %></h5> 
+
+  <p style="font-size:20px;line-height:1.5;margin:10px 0">
+  <%= @comment.content %> <br>
+    <% if @comment.imgURL1? || @comment.imgURL1? || @comment.imgURL1?  %>
+      <strong><i class="fa fa-star" style="font-size:18px;"></i> 照片分享</strong><br>
+    <% end %>  
+    <% if @comment.imgURL1? %>
+      <%= image_tag(@comment.imgURL1_url.to_s , {:style => "width:800px;height:600px;object-fit:cover;padding:10px;"}) %>  <br>
+    <% end %>
+     <% if @comment.imgURL2? %>
+      <%= image_tag(@comment.imgURL2_url.to_s , {:style => "width:800px;height:600px;object-fit:cover;padding:10px;"}) %>  <br>
+    <% end %>
+    <% if @comment.imgURL3? %>
+      <%= image_tag(@comment.imgURL3_url.to_s , {:style => "width:800px;height:600px;object-fit:cover;padding:10px;"}) %>  <br>
+    <% end %>
+  </p>
+  
+  <div style="text-align:right">
+    <%= link_to '編輯食記', edit_comment_path(@comment) ,  { :class=>"btn btn-outline-dark" } %>
+  </div>
+</div>
+</div>

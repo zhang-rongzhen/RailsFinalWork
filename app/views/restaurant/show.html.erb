@@ -1,0 +1,33 @@
+<div class="container p-2" >
+  <%= render '/share/top_button' %>
+  <div class="row my-2">
+    <div class="col-sm-4" style="background:rgba(255,255,255,0.7);border-radius:10px 0 0 10px;">
+      <div style="text-align:center;padding:10px 0;">
+        <%= image_tag(@restaurant.picURL, {:style => "width:100%;border-radius:5px;"})%>
+      </div>
+      <h4><strong><%= @restaurant.name %></strong></h4>
+      <p> Address : <%= @restaurant.address %> <br>
+          Tel : <%= @restaurant.tel %></p>
+      
+    </div>
+    
+    <div class="col-sm p-3" style="background:rgba(255,255,255,0.5);border-radius:0 10px 10px 0;">
+      <h5><strong><i class="fa fa-star" style="font-size:18px;"></i>餐廳特色</strong></h5>    
+      <p> <%= @restaurant.foodFeature %> </p>
+       <h5><strong><i class="fa fa-star" style="font-size:18px;"></i>Google地圖</strong></h5> 
+      <div id="map" style="width:90%;height:400px">地圖預留</div>
+        <script type="text/javascript">
+          handler = Gmaps.build('Google');
+          handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+            markers = handler.addMarkers(<%= raw @hash.to_json %>);
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+          });
+      </script>
+      
+    </div>
+  </div>
+
+
+
+</div>

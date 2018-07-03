@@ -1,0 +1,37 @@
+<div class="container p-3" >
+  <% if user_signed_in? %>
+   <%= link_to '撰寫食記', new_comment_path,{:class => "btn btn-outline-dark" ,:style => "float:left"} %>
+  <% end %> 
+ <%= render '/share/top_button' %>
+   
+   <% @comments.each do |comment| %>
+     <div class="card m-3">
+      <h5 class="card-header"><%= comment.rsname %> <span style="color:blue;font-size:15px;"><%= comment.city %></span></h5>
+      <div class="card-body">
+        <div class="row my-2">
+          <div class="col-sm-4" style="text-align:center">
+           <% if comment.imgURL1_url.nil? %>
+             <%= image_tag("noimg.jpeg", {:style => "width:150px;object-fit:cover;border-radius:5px;"}) %>
+           <% else %>
+             <%= image_tag(comment.imgURL1_url.to_s, {:style => "width:150px;object-fit:cover;border-radius:5px;"}) %>
+           <% end %>
+          </div>
+          <div class="col-sm-8" style="height:150px;text-overflow:ellipsis;overflow:hidden;">
+           <p><%= comment.content %></p>
+          </div>
+        </div>
+        <h5>written by <%= comment.user.display_name %></h5>
+        <div style="text-align:right">
+          <%= link_to '編輯食記', edit_comment_path(comment) ,  { :class=>"btn btn-outline-dark" } %>
+          <%= link_to '查看完整食記', comment ,  { :class=>"btn btn-outline-dark" } %>
+          <%= link_to '刪除食記', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+     </div>
+ 
+ 
+   <% end %>
+ 
+  <%= paginate @comments, outer_window: 3 %>
+  <br>
+</div>

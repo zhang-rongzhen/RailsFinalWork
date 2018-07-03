@@ -1,0 +1,45 @@
+
+<%= simple_form_for(@comment, html: { multipart: true}) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :rsname ,label: "標題"  %>
+    <%= f.input :city  ,label: "餐廳所在城市(縣市/鄉鎮)"  %>
+    <%= f.input :content  ,label: "內容" %>
+    <p style="font-size:15px">分享照片</p>
+    
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.file_field :imgURL1 , accept: 'image/png,image/gif,image/jpeg' %><br>
+        <% if @comment.imgURL1? %>
+        <%= image_tag(@comment.imgURL1_url.to_s , {:style => "width:200px;height:200px;object-fit:cover;padding:10px;"}) %>  <br>
+        <% end %>
+        <%= f.input :remove_imgURL1,:as => :boolean, :label => "清除照片1" %>
+      </div>
+      
+      <div class="col-sm-4">
+        <%= f.file_field :imgURL2 , accept: 'image/png,image/gif,image/jpeg' %><br>
+        <% if @comment.imgURL2? %>
+        <%= image_tag(@comment.imgURL2_url.to_s , {:style => "width:200px;height:200px;object-fit:cover;padding:10px;"}) %>  <br>
+        <% end %>
+        <%= f.input :remove_imgURL2,:as => :boolean, :label => "清除照片2" %>
+      </div>
+      
+      <div class="col-sm-4">
+        <%= f.file_field :imgURL3 , accept: 'image/png,image/gif,image/jpeg' %><br>
+        <% if @comment.imgURL3? %>
+        <%= image_tag(@comment.imgURL3_url.to_s , {:style => "width:200px;height:200px;object-fit:cover;padding:10px;"}) %>  <br>
+        <% end %>
+        <%= f.input :remove_imgURL3,:as => :boolean, :label => "清除照片3" %>
+      </div>
+      
+    </div>
+
+    <!--<%= f.input :user %>-->
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit,class: "btn btn-primary my-2" %>
+  </div>
+<% end %>

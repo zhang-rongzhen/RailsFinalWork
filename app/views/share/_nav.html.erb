@@ -1,0 +1,12 @@
+<ul class="nav py-2 justify-content-end" style="background-color: #00DD00;">
+  <%= link_to "首頁", root_path, class: "nav-link active", style: "color: #FFF;" %>
+  <% unless user_signed_in? %>
+    <%= link_to "註冊", new_user_registration_path, class: "nav-link active", style: "color: #FFF;"  %>
+    <%= link_to "登入", new_user_session_path, class: "nav-link active", style: "color: #FFF;"  %>
+  <% end %> 
+  <% if user_signed_in? %>
+    <%= link_to current_user.display_name, edit_user_registration_path, method: "get", class: "nav-link active", style: "color: #FFF;"  %>
+    <%= link_to "登出", destroy_user_session_path, method: "delete", class: "nav-link active", style: "color: #FFF;" %> 
+  <% end %>  
+  <!--:method => :post-->
+</ul>
