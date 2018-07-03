@@ -30,6 +30,8 @@ gem 'cancancan', '~> 2.2'
 gem 'friendly_id', '~> 5.2', '>= 5.2.4'
 gem 'babosa', '~> 1.0', '>= 1.0.2'
 
+gem 'whenever', '~> 0.10.0',require: false
+
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
