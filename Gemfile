@@ -27,6 +27,8 @@ gem 'simple_form', '~> 4.0'
 gem 'carrierwave', '~> 1.2', '>= 1.2.3'
 gem 'cancancan', '~> 2.2'
 
+gem 'friendly_id', '~> 5.2', '>= 5.2.4'
+gem 'babosa', '~> 1.0', '>= 1.0.2'
 
 
 # Use CoffeeScript for .coffee assets and views
